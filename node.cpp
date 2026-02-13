@@ -300,8 +300,9 @@ template <typename T> Node<T>* cutPaste(Node<T>* head) {
 }
 
 int main() {
-    int i = 0;
-    Node<int>* head = new Node<int>(i);
-    insertAtBeginning(head, i);
+    Node<int>* head = new Node<int>(0);
+    for (int i = 0; i < 10; i++) {
+        insertAtBeginning(head, i);
+    }
     return 0;
 }
