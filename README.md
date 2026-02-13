@@ -1,4 +1,10 @@
 # Node.cpp
 ## Node Object
-## Insertion Function
-## Deletion Function
+* template data type
+* doubly linked: prev, next
+## Insertion Functions
+### insertAtBeginning()
+### insertAtEnd()
+## Deletion Functions
+## Arithmetic Functions
+## Data Transfer Functions
