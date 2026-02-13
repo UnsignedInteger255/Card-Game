@@ -44,7 +44,7 @@ template <typename T> class Node {
     - traversal/reverse */
 
 /* Insertions functions */
-void insertAtBeginning(Node*& head, T data) {
+template <typename T> void insertAtBeginning(Node<T>*& head, T data) {
             // Create a new node with the given data.
             Node* newNode = new Node(data);
             // Check if the doubly linked list is empty.
@@ -58,7 +58,7 @@ void insertAtBeginning(Node*& head, T data) {
             head = newNode;
         }
 
-void insertAtEnd(Node*& head, T data) {
+template <typename T> void insertAtEnd(Node<T>*& head, int data) {
             Node* newNode = new Node(data);
 
             if (head == nullptr) {
@@ -74,7 +74,7 @@ void insertAtEnd(Node*& head, T data) {
             newNode->prev = temp;
         }
 
-void insertAtPosition(Node*& head, T data, int position) {            
+template <typename T> void insertAtPosition(Node<T>*& head, int data, int position) {            
             if (position < 1) {
                 cout << "Invalid position (< 1)." << endl;
                 return;
@@ -109,7 +109,7 @@ void insertAtPosition(Node*& head, T data, int position) {
 }
 
 /* Deletion functions */
-void deleteFirst(Node*& head) {
+template <typename T> void deleteFirst(Node<T>*& head) {
     // Check if the doubly linked list is empty
     if (head == nullptr) {
         cout << "The list is already empty." << endl;
@@ -125,7 +125,7 @@ void deleteFirst(Node*& head) {
     delete temp;
 }
 
-void deleteLast(Node*& head) {
+template <typename T> void deleteLast(Node<T>*& head) {
     // Check if the doubly linked list is empty
     if (head == nullptr) {
         cout << "The list is already empty." << endl;
@@ -151,7 +151,7 @@ void deleteLast(Node*& head) {
     delete temp;
 }
 
-void deleteList(Node*& head) {
+template <typename T> void deleteList(Node<T>*& head) {
     Node* temp;
     while (head != nullptr) {
         temp = head;
@@ -162,7 +162,7 @@ void deleteList(Node*& head) {
 }
 
 /* Print functions */
-void printListForward(Node*& head) {
+template <typename T> void printListForward(Node<T>*& head) {
     Node* temp = head;
     cout << "Forward List: ";
     while (temp != nullptr) {
@@ -175,7 +175,7 @@ void printListForward(Node*& head) {
     cout << endl;
 }
 
-void printListBackward(Node*& head) {
+template <typename T> void printListBackward(Node<T>*& head) {
     Node* temp = head;
     cout << "Backward List: ";
     
@@ -194,7 +194,7 @@ void printListBackward(Node*& head) {
 }
 
 /* Arithmetic functions */
-int size(Node*& head) {
+template <typename T> int size(Node<T>*& head) {
     Node *temp = head;
 
     int count = 0;
@@ -210,35 +210,7 @@ int size(Node*& head) {
 /*  These functions will first traverse the list to the beginning 
     position and copy x nodes where x is the legnth */
 
-Node* copyPaste(Node*& head) {
-    if (head == nullptr) {
-        cout << "This list is empty." << endl;
-        return nullptr;
-    }
-
-    if (head->next == nullptr) {
-        Node* copy = new Node(head->data);
-        return copy;
-    }
-
-    Node* copy = new Node(head->data);
-    Node* nextNode =  head->next;
-    Node* newTemp = copy;
-
-    while (nextNode != nullptr) {
-        Node* newNode = new Node(nextNode->data);
-        
-        newTemp->next = newNode;
-        newNode->prev = newTemp;
-        
-        newTemp = newNode;
-        nextNode = nextNode->next;
-    }
-
-    return copy;
-}
-
-Node* copyPaste(Node* head, int beginning) {
+template <typename T> Node<T>* copyPaste(Node<T>* head, int beginning = 1) {
     if (head == nullptr) {
         cout << "This list is empty." << endl;
         return nullptr;
@@ -276,7 +248,7 @@ Node* copyPaste(Node* head, int beginning) {
     return copy;
 }
 
-Node* copyPaste(Node* head, int beginning, int length) {
+template <typename T> Node<T>* copyPaste(Node<T>* head, int beginning, int length) {
     if (head == nullptr) {
         cout << "This list is empty." << endl;
         return nullptr;
@@ -321,30 +293,15 @@ Node* copyPaste(Node* head, int beginning, int length) {
     return copy;
 }
 
-Node* cutPaste(Node* head) {
+template <typename T> Node<T>* cutPaste(Node<T>* head) {
     Node* newNode = copyPaste(head, 1);
     deleteList(head);
     return newNode;
 }
 
 int main() {
-    Node* head = new Node(10);
-    insertAtBeginning(head, 20);
-    insertAtBeginning(head, 30);
-    insertAtBeginning(head, 40);
-    insertAtBeginning(head, 50);
-    insertAtBeginning(head, 60);
-    insertAtEnd(head, 0);
-
-    cout << "Original list's size: " << size(head) << endl;
-    printListForward(head);
-    
-    Node* clone = cutPaste(head);
-    cout << "Copy's size: " << endl;
-    printListForward(clone);
-
-    cout << endl << "Original list's size:" <<size(head) << endl;
-    printListForward(head);
-   
+    int i = 0;
+    Node<int>* head = new Node<int>(i);
+    insertAtBeginning(head, i);
     return 0;
 }
