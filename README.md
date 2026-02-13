@@ -3,6 +3,7 @@
 * template data type
 * doubly linked: prev, next
 ## Insertion Functions
+Allocate and link new Node object to the head node 
 ### insertAtBeginning()
 ### insertAtEnd()
 ### insertAtPosition()
