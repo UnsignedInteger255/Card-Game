@@ -1,7 +1,42 @@
 #include <iostream>
-#include "node.h"
-
 using namespace std;
+
+template <typename T> class Node {
+    public:
+        T data;
+        Node<T>* next;
+        Node<T>* prev;
+
+        // Constructor
+        Node(T data) {
+            this->data = data;
+            this->next = nullptr;
+            this->prev = nullptr;
+        }
+        
+        void push(T data) {
+            Node* new_node = new Node<T>(data);
+            
+            new_node->next = this->next;
+            new_node->prev = this;
+        
+            if (this->next != nullptr)
+                this->next->prev = new_node;
+            
+            this->next = new_node;
+        }
+
+        void display() {
+            Node* current = this;
+            while(current != nullptr) {
+                cout << current->data;
+                if (current->next != nullptr)
+                    cout << "<->";
+                current = current->next;
+            }
+            cout << endl;
+        }
+};
 
 /*  Series of nodes connected by two-way pointers. 
     Operations: 
@@ -9,7 +44,7 @@ using namespace std;
     - traversal/reverse */
 
 /* Insertions functions */
-void insertAtBeginning(Node*& head, int data) {
+void insertAtBeginning(Node*& head, T data) {
             // Create a new node with the given data.
             Node* newNode = new Node(data);
             // Check if the doubly linked list is empty.
@@ -23,7 +58,7 @@ void insertAtBeginning(Node*& head, int data) {
             head = newNode;
         }
 
-void insertAtEnd(Node*& head, int data) {
+void insertAtEnd(Node*& head, T data) {
             Node* newNode = new Node(data);
 
             if (head == nullptr) {
@@ -39,7 +74,7 @@ void insertAtEnd(Node*& head, int data) {
             newNode->prev = temp;
         }
 
-void insertAtPosition(Node*& head, int data, int position) {            
+void insertAtPosition(Node*& head, T data, int position) {            
             if (position < 1) {
                 cout << "Invalid position (< 1)." << endl;
                 return;
