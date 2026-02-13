@@ -1,4 +1,14 @@
----
+<details>
+  <summary>Node class</summary>
+This node contains a template `data`, a pointer to `next`, and a pointer to `prev`.
+```cpp
+template <typename T>
+class Node {
+    T data;
+    Node<T>* next;
+    Node<T>* prev;
+};
+</details>
 <details>
       <summary>Node.cpp</summary>
       <details>
@@ -10,7 +20,7 @@
          <summary>Insertion Functions</summary>
             <details>
                   <summary>insertAtBeginning</summary>
-                  <p></p>
+                  <p>You have to specify what node you are inserting and what data to include</p>
             </details>
       </details>
       <hr>
