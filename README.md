@@ -5,6 +5,7 @@
 ## Insertion Functions
 ### insertAtBeginning()
 ### insertAtEnd()
+### insertAtPosition()
 ## Deletion Functions
 ## Arithmetic Functions
 ## Data Transfer Functions
