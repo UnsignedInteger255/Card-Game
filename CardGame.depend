@@ -1,0 +1,52 @@
+# depslib dependency file v1.0
+1771105708 source:c:\users\quoct\onedrive\documents\college works\cop 4530\cardgame\main.cpp
+	<iostream>
+	"game.h"
+	"Deck.h"
+	"node.h"
+	"player.h"
+	"Card.h"
+
+1771107615 c:\users\quoct\onedrive\documents\college works\cop 4530\cardgame\game.h
+	<string>
+	"player.h"
+	"Deck.h"
+	"node.h"
+	"Card.h"
+
+1771085035 c:\users\quoct\onedrive\documents\college works\cop 4530\cardgame\player.h
+	<iostream>
+
+1771083404 c:\users\quoct\onedrive\documents\college works\cop 4530\cardgame\deck.h
+	"Card.h"
+
+1771083379 c:\users\quoct\onedrive\documents\college works\cop 4530\cardgame\card.h
+	<string>
+	<ostream>
+
+1771104999 c:\users\quoct\onedrive\documents\college works\cop 4530\cardgame\node.h
+	<iostream>
+
+1771100278 c:\users\quoct\onedrive\documents\college works\cop 4530\cardgame\node.cpp
+	<iostream>
+	"node.h"
+
+1771080402 source:c:\users\quoct\onedrive\documents\college works\cop 4530\cardgame\card.cpp
+	"Card.h"
+	<stdexcept>
+
+1771101839 source:c:\users\quoct\onedrive\documents\college works\cop 4530\cardgame\deck.cpp
+	<vector>
+	<random>
+	<algorithm>
+	<stdexcept>
+	<iostream>
+	"node.h"
+	"Deck.h"
+
+1771105515 source:c:\users\quoct\onedrive\documents\college works\cop 4530\cardgame\node.cpp
+	<iostream>
+	"node.h"
+
+1771085685 source:c:\users\quoct\onedrive\documents\college works\cop 4530\cardgame\player.cpp
+
