@@ -229,6 +229,7 @@ template <typename T> Node<T>* copyPaste(Node<T>* head, int beginning = 1) {
 
     if (temp == nullptr) {
         cout << "Position is outside of list" << endl;
+        return nullptr;
     }
 
     Node<T>* copy = new Node(temp->data);
@@ -272,6 +273,7 @@ template <typename T> Node<T>* copyPaste(Node<T>* head, int beginning, int lengt
 
     if (temp == nullptr) {
         cout << "Position is outside of list" << endl;
+        return nullptr;
     }
 
     Node<T>* copy = new Node(temp->data);
