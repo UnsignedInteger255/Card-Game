@@ -210,7 +210,8 @@ template <typename T> int size(Node<T>*& head) {
 /*  These functions will first traverse the list to the beginning 
     position and copy x nodes where x is the legnth */
 
-template <typename T> Node<T>* copyPaste(Node<T>* head, int beginning = 1) {
+template <typename T> 
+Node<T>* copyPaste(Node<T>* head, int beginning = 1) {
     if (head == nullptr) {
         cout << "This list is empty." << endl;
         return nullptr;
@@ -232,12 +233,15 @@ template <typename T> Node<T>* copyPaste(Node<T>* head, int beginning = 1) {
         return nullptr;
     }
 
-    Node<T>* copy = new Node(temp->data);
-    Node<T>* nextNode =  temp->next;
+    // Create the first node of the copy
+    Node<T>* copy = new Node<T>(temp->data);
+
+    // Declare nextNode before using it
+    Node<T>* nextNode = temp->next;
     Node<T>* newTemp = copy;
 
     while (nextNode != nullptr) {
-        Node<T>* newNode = new Node(nextNode->data);
+        Node<T>* newNode = new Node<T>(nextNode->data);
         
         newTemp->next = newNode;
         newNode->prev = newTemp;
@@ -275,14 +279,16 @@ template <typename T> Node<T>* copyPaste(Node<T>* head, int beginning, int lengt
         cout << "Position is outside of list" << endl;
         return nullptr;
     }
+    // Create the first node of the copy
+    Node<T>* copy = new Node<T>(temp->data);
 
-    Node<T>* copy = new Node(temp->data);
-    Node<T>* nextNode =  temp->next;
+    Node<T>* nextNode = temp->next;  // DECLARE nextNode BEFORE using it
     Node<T>* newTemp = copy;
+
 
     int i = 1;
     while (nextNode != nullptr && i < length) {
-        Node<T>* newNode = new Node(nextNode->data);
+        Node<T>* newNode = new Node <T>(nextNode->data); // Must be Node<T>
         
         newTemp->next = newNode;
         newNode->prev = newTemp;
@@ -319,24 +325,4 @@ template <typename T> Node<T>* cutPaste(Node<T>* head, int beginning = 1) {
 
 
     return current_node;
-}
-
-int main() {
-    Node<int>* head1 = new Node<int>(0);
-    for (int i = 0; i < 10; i++) {
-        insertAtBeginning(head1, i);
-    }
-    printListForward(head1);
-
-    Node<int>* head2 = new Node<int>(-1);
-    for (int i = 0; i < 2; i++) {
-        insertAtEnd(head2, i);
-    }
-    printListForward(head2);
-
-    Node<int>* head3 = new Node<int>(-3);
-    head3 = cutPaste(head1, 5);
-    printListForward(head3);
-    printListForward(head1);
-    return 0;
 }
