@@ -28,7 +28,7 @@ public:
     // Game setup
     void setUp();
     void playGame();
-    void endGame();
+    int endGame();
 
     // Card distribution
     void dealEachPlayer(int n = 3);
@@ -36,3 +36,4 @@ public:
 };
 
 #endif // GAME_H_INCLUDED
+
