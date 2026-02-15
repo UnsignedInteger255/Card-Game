@@ -29,5 +29,10 @@ public:
     void setUp();
     void playGame();
     void endGame();
+
+    // Card distribution
+    void dealEachPlayer(int n = 3);
+    void returnToDeck();
 };
+
 #endif // GAME_H_INCLUDED
