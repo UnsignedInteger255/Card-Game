@@ -30,15 +30,25 @@
         do {
             cout << "NOTE: 17 players MAX (3 cards * 17 players = 51 cards/52 cards)";
             cout << "Enter number of player(s): ";
+            
             cin >> num_players;
+            // Ignore the previous num_players input to take in the player's name
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // consume newline
+
+            
         } while (num_players < 1 || num_players > 17);
 
+        // Allocate array of players
+        arr_players = new Player[num_players];
+
+        
         // Give each player's name and then deal 3 cards;
         for (int i = 0; i < num_players; i++) {
-            string name;
-            cout << "Enter player " << i+1 << "'s name: ";
-            cin >> name;
-            arr_players[i].name = name;
+            std::string player_name;
+            std::cout << "Enter player " << i+1 << "'s name: ";
+            
+            std::getline(std::cin, player_name);
+            arr_players[i].name = player_name;
 
             // Deal 3 cards
             for (int j = 0; j < 3; j++) {
@@ -53,6 +63,7 @@
     }
 
     void Game::endGame(){}
+
 
 
 
