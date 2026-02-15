@@ -18,7 +18,7 @@ Game::~Game() {
         for (int i = 0; i < num_players; i++) {
             deleteList(arr_players[i].head);
         }
-            delete[] arr_players;
+        delete[] arr_players;
     }
 };
 
@@ -115,7 +115,3 @@ void Game::returnToDeck() {
         }
     }
 }
-
-
-
-
