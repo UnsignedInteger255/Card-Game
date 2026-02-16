@@ -5,7 +5,8 @@
 - [Contributors](#contributors)
 ## How to Play Bài Cào
 ## How to use the program on GitHub Codespaces
-1. Compile all of the following C++ file:
+1. Change directory to the folder
+2. Compile all of the following C++ file:
 ```
 g++ main.cpp game.cpp Deck.cpp Card.cpp node.cpp player.cpp -o CardGame
 ```
