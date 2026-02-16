@@ -166,7 +166,7 @@ template <typename T> void deleteList(Node<T>*& head) {
 }
 
 /* Print functions */
-template <typename T> void printListForward(Node<T>*& head) {
+template <typename T> void printListForward(Node<T>* head) {
     Node<T>* temp = head;
     cout << "Forward List: ";
     while (temp != nullptr) {
@@ -179,7 +179,7 @@ template <typename T> void printListForward(Node<T>*& head) {
     cout << endl;
 }
 
-template <typename T> void printListBackward(Node<T>*& head) {
+template <typename T> void printListBackward(Node<T>* head) {
     Node<T>* temp = head;
     cout << "Backward List: ";
 
@@ -198,11 +198,12 @@ template <typename T> void printListBackward(Node<T>*& head) {
 }
 
 /* Arithmetic functions */
-template <typename T> int size(Node<T>*& head) {
+template <typename T> int size(Node<T>* head) {
     Node<T>* temp = head;
 
     int count = 0;
-    while (temp->next != nullptr) {
+    //counts every node
+    while (temp!= nullptr) {
         temp = temp->next;
         count++;
     }
@@ -233,14 +234,15 @@ template <typename T> Node<T>* copyPaste(Node<T>* head, int beginning = 1) {
 
     if (temp == nullptr) {
         cout << "Position is outside of list" << endl;
+        return nullptr;
     }
 
-    Node<T>* copy = new Node(temp->data);
+    Node<T>* copy = new Node <T> (temp->data);
     Node<T>* nextNode =  temp->next;
     Node<T>* newTemp = copy;
 
     while (nextNode != nullptr) {
-        Node<T>* newNode = new Node(nextNode->data);
+        Node<T>* newNode = new Node<T>(nextNode->data);
 
         newTemp->next = newNode;
         newNode->prev = newTemp;
@@ -285,7 +287,7 @@ template <typename T> Node<T>* copyPaste(Node<T>* head, int beginning, int lengt
 
     int i = 1;
     while (nextNode != nullptr && i < length) {
-        Node<T>* newNode = new Node(nextNode->data);
+        Node<T>* newNode = new Node<T>(nextNode->data);
 
         newTemp->next = newNode;
         newNode->prev = newTemp;
@@ -298,7 +300,7 @@ template <typename T> Node<T>* copyPaste(Node<T>* head, int beginning, int lengt
     return copy;
 }
 
-template <typename T> Node<T>* cutPaste(Node<T>* head, int beginning = 1) {
+template <typename T> Node<T>* cutPaste(Node<T>*& head, int beginning = 1) {
     Node<T>* current_node = head;
     // Move to beginning position
     for (int i = 1; i < beginning && current_node != nullptr; i++) {
