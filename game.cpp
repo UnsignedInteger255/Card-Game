@@ -65,13 +65,7 @@ void Game::setUp() {
 
 // Player can cut the deck:
 void Game::playGame() {
-    int where_to_cut;
-    cout << "Enter the card you want to cut: ";
 
-    cin >> where_to_cut;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-    deck.cut(where_to_cut);
 }
 
 /*  There are three return code once the game end:
@@ -99,6 +93,49 @@ int Game::endGame(){
         }
     } while (input != 0 && input != 1 && input != 2);
     return input;
+}
+
+// POINT FUNCTION #1: calculate one player's Bài Cào points from their 3-card hand
+int Game::calculatePointsForPlayer(Node<Card>* handHead) const {
+    int sum = 0;
+    int count = 0;
+
+    Node<Card>* cur = handHead;
+    while (cur != nullptr && count < 3) {
+        sum += cur->data.caoValue();
+        cur = cur->next;
+        count++;
+    }
+
+    return sum % 10; // last digit
+}
+
+// POINT FUNCTION #2: calculate points for all players and store into arr_players[i].points
+void Game::calculatePointsForAllPlayers() {
+    for (int i = 0; i < num_players; i++) {
+        arr_players[i].points = calculatePointsForPlayer(arr_players[i].head);
+    }
+}
+
+// WINNER FUNCTION: prints winner(s) (ties allowed)
+void Game::findWinner() const {
+    int best = -1;
+
+    for (int i = 0; i < num_players; i++) {
+        if (arr_players[i].points > best) best = arr_players[i].points;
+    }
+
+    cout << "Best score: " << best << "\nWinner(s): ";
+    bool first = true;
+
+    for (int i = 0; i < num_players; i++) {
+        if (arr_players[i].points == best) {
+            if (!first) cout << ", ";
+            cout << arr_players[i].name;
+            first = false;
+        }
+    }
+    cout << "\n";
 }
 
 // Card distribution
