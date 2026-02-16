@@ -26,4 +26,4 @@ public:
     void printTopN(int n) const;
 };
 
-#endif
+#endif //DECK_H
