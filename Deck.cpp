@@ -1,11 +1,10 @@
-
 #include <vector>
 #include <random>
 #include <algorithm>
 #include <stdexcept>
 #include <iostream>
 
-#include "node.cpp"
+#include "node.h"
 #include "Deck.h"
 
 // ---------- Helper functions (only used inside this file) ----------
@@ -81,7 +80,7 @@ void Deck::buildStandard52() {
 
 // Shuffle approach
 void Deck::shuffle() {
-    if (size() <= 1) 
+    if (size() <= 1)
         return; // nothing to shuffle for 0 or 1 card
 
     // Step 1: move cards to a vector

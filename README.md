@@ -1,26 +1,14 @@
-# Node.cpp
-## Node Object
-* template data type
-* doubly linked: prev, next
-## Insertion Functions
-Allocate and link new Node object to the head node 
-### insertAtBeginning()
-* Add a new node of data type T before the current node
-### insertAtEnd()
-* Traverse all nodes before adding new node
-* Add a new node of data type T after the current node
-### insertAtPosition()
-* Traverse a specified number of nodes (int position) before adding new node
-* Position is 1-based, the first node is at position 1, entering a position lesser than 1 is invalid
-* Add a new node of data type T after the current node
-## Deletion Functions
-### deleteFirst()
-* delete the first node and set the node after it as the first node.
-### deleteLast()
-* Traverse all nodes before deleting the last node
-### deleteList()
-* Delete the whole list
-## Arithmetic Functions
-### size()
-* traverse to the end of the list, return how many nodes have traversed
-## Data Transfer Functions
+# Bài Cào Program in C++
+## Table of Contents
+- [How to Play Bài Cào](#how-to-play-bài-cào)
+- [How to Use the Program on GitHub](#how-to-use-the-program-on-github-codespaces)
+- [Contributors](#contributors)
+## How to Play Bài Cào
+## How to use the program on GitHub Codespaces
+1. Compile all of the following C++ file:
+```
+g++ main.cpp game.cpp Deck.cpp Card.cpp node.cpp player.cpp -o CardGame
+```
+## Contributors
+- [Huu Phat Nguyen](https://github.com/HuuPhatNguyen290)
+
