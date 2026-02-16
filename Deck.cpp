@@ -1,3 +1,4 @@
+
 #include <vector>
 #include <random>
 #include <algorithm>
@@ -7,7 +8,7 @@
 #include "node.h"
 #include "Deck.h"
 
-// ---------- Helper functions (only used inside this file) ----------
+//Helper functions
 
 // remove and return top card (updates head pointer)
 static Card popFront(Node<Card>*& head) {
@@ -80,11 +81,12 @@ void Deck::buildStandard52() {
 
 // Shuffle approach
 void Deck::shuffle() {
-    if (size() <= 1)
+    if (size() <= 1) 
         return; // nothing to shuffle for 0 or 1 card
 
     // Step 1: move cards to a vector
     std::vector<Card> temp;
+    temp.reserve(size());
     while (!empty()) {
         temp.push_back(popFront(head)); // remove from top and store in vector
     }
