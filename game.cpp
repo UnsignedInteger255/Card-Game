@@ -20,12 +20,6 @@ Game::~Game() {
     }
 };
 
-/*  Set up the game by:
-    - create a normal deck
-    - getting number of players
-    - name each player
-    - draw 3 card per player*/
-
 // POINT FUNCTION #1: calculate one player's Bài Cào points from their 3-card hand
 int Game::calculatePointsForPlayer(Node<Card>* handHead) const {
     int sum = 0;
@@ -68,37 +62,29 @@ void Game::findWinner() const {
     }
     cout << "\n";
 }
+
+/*  Set up the game by:
+    - create a normal deck
+    - getting number of players
+    - name each player
+    - draw 3 card per player*/
 void Game::setUp() {
     // Validating user's input of number of players
     do {
-        cout << "NOTE: 17 players MAX (3 cards * 17 players = 51 cards/52 cards)";
-        cout << "Enter number of player(s): ";
-        
-        cin >> num_players;
-        // Ignore the previous num_players input to take in the player's name
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // consume newline
+        std::cout << "NOTE: 17 players MAX (3 cards * 17 players = 51 cards/52 cards)" << endl;
+        std::cout << "Enter number of player(s): ";
 
-        
+        // If the user's input is not an integer:
+        std::cin >> num_players;
+        if (std::cin.fail()) {
+            std::cin.clear();
+            // Ignore the previous num_players input to take in the player's name
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // consume newline
+            std::cout << "Invalid input, please enter an integer: " << endl;
+        }
+
     } while (num_players < 1 || num_players > 17);
 
-    // Allocate array of players
-    arr_players = new Player[num_players];
-
-    
-    // Give each player's name and then deal 3 cards;
-    for (int i = 0; i < num_players; i++) {
-        std::string player_name;
-        std::cout << "Enter player " << i+1 << "'s name: ";
-        
-        std::getline(std::cin, player_name);
-        arr_players[i].name = player_name;
-
-        // Deal 3 cards
-        for (int j = 0; j < 3; j++) {
-            insertAtBeginning<Card>(arr_players[i].head, deck.dealOne());
-        }
-    }
-}
 
 // To play the game
 void Game::playGame() {
@@ -160,9 +146,3 @@ void Game::returnToDeck() {
         }
     }
 }
-
-
-
-
-
-
