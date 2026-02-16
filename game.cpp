@@ -85,7 +85,21 @@ void Game::setUp() {
 
     } while (num_players < 1 || num_players > 17);
 
+    // Allocate array of players
+    arr_players = new Player[num_players];
 
+    // Give each player's name and then deal 3 cards;
+    for (int i = 0; i < num_players; i++) {
+        std::string player_name;
+        std::cout << "Enter player " << i+1 << "'s name: ";
+
+        std::getline(std::cin, player_name);
+
+        arr_players[i].name = player_name;
+    }
+    // Deal 3 cards
+    dealEachPlayer();
+}
 // To play the game
 void Game::playGame() {
 
@@ -146,3 +160,4 @@ void Game::returnToDeck() {
         }
     }
 }
+
