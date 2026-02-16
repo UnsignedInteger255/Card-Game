@@ -1,67 +1,27 @@
 #include <iostream>
 #include <string>
+#include <limits>
 #include "player.h"
-#include "deck.h"
+#include "Deck.h"
 #include "node.h"
 #include "Card.h"
 #include "game.h"
 
+// Constructor
 Game::Game() : arr_players(nullptr), num_players(0), turn(0) {
     deck.buildStandard52();
     deck.shuffle();
 };
 
+// Destructor
 Game::~Game() {
     if (arr_players) {
         for (int i = 0; i < num_players; i++) {
             deleteList(arr_players[i].head);
         }
-            delete[] arr_players;
+        delete[] arr_players;
     }
 };
-
-// POINT FUNCTION #1: calculate one player's Bài Cào points from their 3-card hand
-int Game::calculatePointsForPlayer(Node<Card>* handHead) const {
-    int sum = 0;
-    int count = 0;
-
-    Node<Card>* cur = handHead;
-    while (cur != nullptr && count < 3) {
-        sum += cur->data.caoValue();
-        cur = cur->next;
-        count++;
-    }
-
-    return sum % 10; // last digit
-}
-
-// POINT FUNCTION #2: calculate points for all players and store into arr_players[i].points
-void Game::calculatePointsForAllPlayers() {
-    for (int i = 0; i < num_players; i++) {
-        arr_players[i].points = calculatePointsForPlayer(arr_players[i].head);
-    }
-}
-
-// WINNER FUNCTION: prints winner(s) (ties allowed)
-void Game::findWinner() const {
-    int best = -1;
-
-    for (int i = 0; i < num_players; i++) {
-        if (arr_players[i].points > best) best = arr_players[i].points;
-    }
-
-    cout << "Best score: " << best << "\nWinner(s): ";
-    bool first = true;
-
-    for (int i = 0; i < num_players; i++) {
-        if (arr_players[i].points == best) {
-            if (!first) cout << ", ";
-            cout << arr_players[i].name;
-            first = false;
-        }
-    }
-    cout << "\n";
-}
 
 /*  Set up the game by:
     - create a normal deck
@@ -79,11 +39,13 @@ void Game::setUp() {
         if (std::cin.fail()) {
             std::cin.clear();
             // Ignore the previous num_players input to take in the player's name
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // consume newline
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // ignore newline
             std::cout << "Invalid input, please enter an integer: " << endl;
         }
 
     } while (num_players < 1 || num_players > 17);
+    // Ignore the newline character
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     // Allocate array of players
     arr_players = new Player[num_players];
@@ -100,9 +62,16 @@ void Game::setUp() {
     // Deal 3 cards
     dealEachPlayer();
 }
-// To play the game
-void Game::playGame() {
 
+// Player can cut the deck:
+void Game::playGame() {
+    int where_to_cut;
+    cout << "Enter the card you want to cut: ";
+
+    cin >> where_to_cut;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    deck.cut(where_to_cut);
 }
 
 /*  There are three return code once the game end:
@@ -137,20 +106,20 @@ int Game::endGame(){
 void Game::dealEachPlayer(int n) {
     for (int i = 0; i < num_players; i++) {
         for (int j = 0; j < n; j++)
-            insertAtBeginning<Card>(arr_players[i].head, deck.dealOne());
+            // Take one card from the deck and put it into player's hand
+            insertAtBeginning(arr_players[i].head, deck.dealOne());
         printListForward(arr_players[i].head);
     }
-
 }
 // Return all players' cards to deck
 void Game::returnToDeck() {
     // For each player:
     for (int i = 0; i < num_players; i++) {
         // 1. Go through each player's cards
-        Node<Card>* current = arr_players[1].head;
+        Node<Card>* current = arr_players[i].head;
         while (current != nullptr) {
             // 2. Add that player's cards back to the deck
-            insertAtBeginning<Card>(deck.head, current->data);
+            deck.addToDeck(arr_players[i].head);
 
             Node<Card>* temp = current;
             current = current->next;
@@ -160,4 +129,3 @@ void Game::returnToDeck() {
         }
     }
 }
-
