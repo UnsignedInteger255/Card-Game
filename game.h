@@ -1,45 +1,43 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
 
-#include <string>
-#include "player.h"
+#include "Player.h"
 #include "Deck.h"
-#include "node.h"
-#include "Card.h"
+
+template <typename T> class Node;
+class Card;
 
 class Game {
-public:
-    // Array of players
-    Player* arr_players;
-    int num_players;
+    private:
+    // POINT FUNCTION #1: compute one player's points from their hand
+    int calculatePoints(Node<Card>* handHead) const;
 
-    // Deck of cards
-    Deck deck;
-
-    // Current turn
-    int turn;
-
-    // Constructor
-    Game();
-
-    // Destructor
-    ~Game();
-
-    // Game setup
-    void setUp();
-    void playGame();
-    int endGame();
-
-    // Points function
-    int calculatePointsForPlayer(Node<Card>* handHead) const;
+    // POINT FUNCTION #2: compute and store points for all players
     void calculatePointsForAllPlayers();
-    void findWinner() const;
 
-    // Card distribution
-    void dealEachPlayer(int n = 3);
-    void returnToDeck();
+    // WINNER FUNCTION: returns best score and prints winner(s)
+    int findWinner() const;
+
+    public:
+        // Array of players
+        Player* arr_players;
+        int num_players;
+
+        // Deck of cards
+        Deck deck;
+
+        // Current turn
+        int turn;
+
+        // Constructor
+        Game();
+
+        // Destructor
+        ~Game();
+
+        // Game setup
+        void setUp();
+        void playGame();
+        void endGame();
 };
-
 #endif // GAME_H_INCLUDED
-
-
