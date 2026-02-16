@@ -105,7 +105,63 @@ void Game::playGame() {
 
 }
 
-void Game::endGame(){}
+/*  There are three return code once the game end:
+    [0]. Ending the game, and start a new game
+    [1]. Restart the same game
+    [2]. Ending the game */
+int Game::endGame(){
+    int input;
+    cout << "Game Over" << endl;
+    cout << "Do You Want To Play Again?\t[Enter number]" << endl;
+    cout << "[0]. Yes, but with different number of players." << endl;
+    cout << "[1]. Yes, restart the same game." << endl;
+    cout << "[2]. No, terminate program." << endl;
+    do {
+        cout << "Input: ";
+        if (!(cin >> input)) {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "Invalid Input, please try again (valid inputs: 0, 1, 2)." << endl;
+            continue;
+        }
+
+        if (input != 0 && input != 1 && input != 2) {
+            cout << "Invalid Input, please try again (valid inputs: 0, 1, 2).";
+        }
+    } while (input != 0 && input != 1 && input != 2);
+    return input;
+}
+
+// Card distribution
+// Deal each player n card, default n is 3
+void Game::dealEachPlayer(int n) {
+    for (int i = 0; i < num_players; i++) {
+        for (int j = 0; j < n; j++)
+            insertAtBeginning<Card>(arr_players[i].head, deck.dealOne());
+        printListForward(arr_players[i].head);
+    }
+
+}
+// Return all players' cards to deck
+void Game::returnToDeck() {
+    // For each player:
+    for (int i = 0; i < num_players; i++) {
+        // 1. Go through each player's cards
+        Node<Card>* current = arr_players[1].head;
+        while (current != nullptr) {
+            // 2. Add that player's cards back to the deck
+            insertAtBeginning<Card>(deck.head, current->data);
+
+            Node<Card>* temp = current;
+            current = current->next;
+            /* 3. Delete that player's cards,
+             effectively returning those cards back to the deck*/
+            delete temp;
+        }
+    }
+}
+
+
 
 
 
