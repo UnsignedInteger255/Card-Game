@@ -1,17 +1,13 @@
 #include <iostream>
 #include "game.h"
-#include "Deck.h"
-#include "node.h"
-#include "player.h"
-#include "Card.h"
-using namespace std;
 
 int main() {
-    Game new_game;
-    new_game.setUp();
-    new_game.playGame();
-    new_game.endGame()
 
-    return 0;
+    Game game;        // creates deck, builds + shuffles (in Game constructor)
+    game.setUp();     // ask #players, names, deal 3 cards each
+    game.playGame();  // calculate points, print hands, print winner(s)
+    game.endGame();   // optional ending message
+
+
+    return 0; // success
 }
-
