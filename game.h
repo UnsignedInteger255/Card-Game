@@ -30,10 +30,16 @@ public:
     void playGame();
     int endGame();
 
+    // Points function
+    int calculatePointsForPlayer(Node<Card>* handHead) const;
+    void calculatePointsForAllPlayers();
+    void findWinner() const;
+
     // Card distribution
     void dealEachPlayer(int n = 3);
     void returnToDeck();
 };
 
 #endif // GAME_H_INCLUDED
+
 
