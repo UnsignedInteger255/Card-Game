@@ -84,7 +84,7 @@ int Game::findWinner() const {
 void Game::setUp() {
     // Validating user's input of number of players
     do {
-        cout << "NOTE: 17 players MAX (3 cards * 17 players = 51 cards/52 cards)";
+        cout << "NOTE: 17 players MAX";
         cout << "Enter number of player(s): ";
         
         cin >> num_players;
@@ -136,6 +136,7 @@ void Game::endGame(){
     cout << "\nGame ended.\n";
 
 }
+
 
 
 
